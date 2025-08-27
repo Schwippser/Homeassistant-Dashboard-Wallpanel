@@ -1,0 +1,2884 @@
+kiosk_mode:
+  user_settings:
+    - users:
+        - user
+      kiosk: true
+      ignore_entity_settings: true
+  admin_settings:
+    hide_sidebar: false
+    hide_header: false
+    ignore_entity_settings: true
+views:
+  - title: 'Home '
+    type: sections
+    max_columns: 4
+    sections:
+      - type: grid
+        cards:
+          - type: custom:gap-card
+            grid_options:
+              columns: 48
+              rows: 0.2
+        column_span: 4
+      - type: grid
+        cards:
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            name: Außentemperatur
+            show_icon: false
+            button_action:
+              tap_action:
+                action: none
+            sub_button: []
+            rows: '2.5'
+            styles: ''
+            modules:
+              - '!default'
+              - my_module_9
+              - my_module_1
+              - my_module_8
+            entity: sensor.shellyh_t_aussenbereich_temperature
+            card_text_style:
+              name:
+                color: white
+                font_size: 20px
+                font_weight: '300'
+                opacity: 1
+              state:
+                color: white
+                font_size: 60px
+                opacity: 1
+                font_weight: '300'
+            visual_styling_center:
+              height_multiplier: 2.7
+              hide_subbutton_background: false
+              enable_gradient: false
+              gradient_target: background
+              subicon_size_multiplier: 1
+              subbutton_background_ratio: 1
+              inner_padding: 0
+              icon_vertical_margin: -10
+              subbutton_horizontal_margin: -10
+              subbutton_row_spacing: 0
+              subbutton_column_spacing: -10
+              apply_to_main_icon: false
+              apply_to_sub_icons: false
+              helper_opacity: 0.85
+            show_state: true
+            tap_action:
+              action: none
+            frosted_glass:
+              border: bubble
+              main_shadow: true
+              background:
+                - 56
+                - 174
+                - 41
+              icon_background: light
+              icon_shadow: false
+              opacity: 0.25
+              blur: 32
+        column_span: 1
+        visibility:
+          - condition: screen
+            media_query: '(min-width: 1024px)'
+      - type: grid
+        cards:
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            name: Waschmaschine
+            show_icon: true
+            button_action:
+              tap_action:
+                action: none
+            sub_button:
+              - entity: input_select.waschmaschine_status
+                show_state: true
+                icon: ''
+                show_arrow: false
+                show_icon: false
+                state_background: false
+                show_background: false
+                tap_action:
+                  action: none
+              - entity: sensor.waschmaschine_dauer
+                show_state: true
+                show_background: false
+                show_icon: false
+                tap_action:
+                  action: none
+                visibility:
+                  - condition: state
+                    entity: input_select.waschmaschine_status
+                    state: Wäscht
+            rows: '2.5'
+            styles: |-
+              .bubble-background {
+                  opacity: 1 !important;
+                  background: ${state === 'Wäscht' ? 'linear-gradient(145deg,rgba(2, 103, 111, 1) 0%, rgba(3, 140, 150, 1) 50%)' : 'linear-gradient(311deg,rgba(0, 38, 41, 1) 0%, rgba(0, 64, 69, 1) 50%)'} !important;
+                }
+            modules:
+              - '!default'
+              - my_module_9
+              - my_module_1
+            show_state: false
+            scrolling_effect: true
+            show_attribute: false
+            show_last_updated: false
+            show_last_changed: false
+            card_layout: large
+            force_icon: false
+            entity: input_select.waschmaschine_status
+            grid_options:
+              columns: 6
+              rows: '2.5'
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            name: Briefkasten
+            show_icon: true
+            button_action:
+              tap_action:
+                action: call-service
+                service: input_select.select_option
+                target:
+                  entity_id: input_select.briefkasten_status
+                data:
+                  option: leer
+            sub_button:
+              - entity: input_select.briefkasten_status
+                show_state: true
+                show_icon: false
+                show_arrow: false
+                state_background: false
+                show_background: false
+                tap_action:
+                  action: none
+                double_tap_action:
+                  action: none
+                hold_action:
+                  action: none
+              - show_icon: false
+                state_background: false
+                show_background: false
+                show_arrow: false
+                hide_when_parent_unavailable: false
+                tap_action:
+                  action: none
+                double_tap_action:
+                  action: none
+                hold_action:
+                  action: none
+                visibility:
+                  - condition: state
+                    entity: ''
+                    state: ''
+            rows: '2.5'
+            styles: |
+              .bubble-background {
+                  opacity: 1 !important;
+                  background: ${state === 'Post' ? 'linear-gradient(145deg,rgba(2, 103, 111, 1) 0%, rgba(3, 140, 150, 1) 50%)' : 'linear-gradient(311deg,rgba(0, 38, 41, 1) 0%, rgba(0, 64, 69, 1) 50%)'} !important;
+                }
+            modules:
+              - '!default'
+              - my_module_9
+              - my_module_1
+            show_state: false
+            tap_action:
+              action: none
+            scrolling_effect: false
+            show_attribute: false
+            show_last_updated: false
+            show_last_changed: false
+            card_layout: large
+            force_icon: false
+            entity: input_select.briefkasten_status
+            grid_options:
+              columns: 6
+              rows: '2.5'
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            name: Paketbox
+            show_icon: true
+            button_action:
+              tap_action:
+                action: call-service
+                service: input_select.select_option
+                target:
+                  entity_id: input_select.paketbox_status
+                data:
+                  option: leer
+            sub_button:
+              - entity: input_select.paketbox_status
+                show_state: true
+                show_icon: false
+                show_arrow: false
+                state_background: false
+                show_background: false
+                tap_action:
+                  action: none
+                double_tap_action:
+                  action: none
+                hold_action:
+                  action: none
+              - show_icon: false
+                state_background: false
+                show_background: false
+                show_arrow: false
+                tap_action:
+                  action: none
+                double_tap_action:
+                  action: none
+                hold_action:
+                  action: none
+                visibility:
+                  - condition: state
+                    entity: ''
+                    state: ''
+            rows: '2.5'
+            styles: |-
+              .bubble-background {
+                  opacity: 1 !important;
+                  background: ${state === 'Paket' ? 'linear-gradient(145deg,rgba(2, 103, 111, 1) 0%, rgba(3, 140, 150, 1) 50%)' : 'linear-gradient(311deg,rgba(0, 38, 41, 1) 0%, rgba(0, 64, 69, 1) 50%)'} !important;
+                }
+            modules:
+              - '!default'
+              - my_module_9
+              - my_module_1
+            show_state: false
+            tap_action:
+              action: none
+            scrolling_effect: false
+            show_attribute: false
+            show_last_updated: false
+            show_last_changed: false
+            card_layout: large
+            force_icon: false
+            entity: input_select.paketbox_status
+            grid_options:
+              columns: 6
+              rows: '2.5'
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            name: Kläranlage
+            show_icon: true
+            button_action:
+              tap_action:
+                action: navigate
+                navigation_path: '#klaranlage'
+            sub_button:
+              - entity: switch.klaranlage_pumpe
+                show_state: true
+                show_icon: true
+                show_arrow: false
+                state_background: false
+                show_background: false
+                tap_action:
+                  action: none
+                double_tap_action:
+                  action: none
+                hold_action:
+                  action: none
+                icon: mdi:pump
+                name: Pumpe
+                show_name: false
+              - entity: switch.klaranlage_schlammruckfuhrung_switch_0
+                name: Schlamm
+                icon: mdi:pipe
+                show_last_changed: false
+                show_state: true
+            rows: '2.5'
+            styles: |-
+
+              .bubble-sub-button-1 {
+                background-color: ${hass.states['switch.klaranlage_pumpe'].state === 'on' ? 'rgba(18, 207, 224,0.6)' : 'transparent'} !important;
+              }
+              .bubble-sub-button-2 {
+                background-color: ${hass.states['switch.klaranlage_schlammruckfuhrung_switch_0'].state === 'on' ? 'rgba(18, 207, 224,0.6)' : 'transparent'} !important;
+              }
+            modules:
+              - '!default'
+              - my_module_9
+              - my_module_1
+            show_state: false
+            tap_action:
+              action: none
+            scrolling_effect: false
+            show_attribute: false
+            show_last_updated: false
+            show_last_changed: false
+            card_layout: large
+            force_icon: false
+            entity: switch.klaranlage_pumpe
+            icon: mdi:air-filter
+            grid_options:
+              columns: 6
+        column_span: 2
+        visibility:
+          - condition: screen
+            media_query: '(min-width: 0px)'
+      - type: grid
+        cards:
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            name: Innentemperatur
+            show_icon: false
+            button_action:
+              tap_action:
+                action: none
+            sub_button: []
+            rows: '2.5'
+            styles: ''
+            modules:
+              - '!default'
+              - my_module_9
+              - my_module_1
+              - my_module_8
+            entity: sensor.temperatursensor_kuche_temperature
+            card_text_style:
+              name:
+                color: white
+                font_size: 20px
+                font_weight: '300'
+                opacity: 1
+              state:
+                color: white
+                font_size: 60px
+                opacity: 1
+                font_weight: '300'
+            visual_styling_center:
+              height_multiplier: 2.7
+              hide_subbutton_background: false
+              enable_gradient: false
+              gradient_target: background
+              subicon_size_multiplier: 1
+              subbutton_background_ratio: 1
+              inner_padding: 0
+              icon_vertical_margin: -10
+              subbutton_horizontal_margin: -10
+              subbutton_row_spacing: 0
+              subbutton_column_spacing: -10
+              apply_to_main_icon: false
+              apply_to_sub_icons: false
+              helper_opacity: 0.85
+            show_state: true
+            tap_action:
+              action: none
+            frosted_glass:
+              border: bubble
+              main_shadow: true
+              background:
+                - 56
+                - 174
+                - 41
+              icon_background: light
+              icon_shadow: false
+              opacity: 0.25
+              blur: 32
+        column_span: 1
+        visibility:
+          - condition: screen
+            media_query: '(min-width: 1024px)'
+      - type: grid
+        cards:
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            entity: weather.forecast_home
+            show_name: false
+            show_state: false
+            card_layout: large-2-rows
+            grid_options:
+              columns: full
+            sub_button:
+              - name: Date 1h
+                entity: sensor.weather_1h_date
+                show_state: true
+                show_icon: false
+                show_background: false
+              - name: Icon 1h
+                show_icon: true
+                show_background: false
+              - name: Tmp 1h
+                entity: sensor.weather_1h_temp
+                show_state: true
+                show_icon: false
+                show_background: false
+              - name: Date 3h
+                entity: sensor.weather_3h_date
+                show_state: true
+                show_icon: false
+                show_background: false
+              - name: Icon 3h
+                show_icon: true
+                show_background: false
+              - name: Tmp 3h
+                entity: sensor.weather_3h_temp
+                show_state: true
+                show_icon: false
+                show_background: false
+              - name: Date 5h
+                entity: sensor.weather_5h_date
+                show_state: true
+                show_icon: false
+                show_background: false
+              - name: Icon 5h
+                show_icon: true
+                show_background: false
+              - name: Tmp 5h
+                entity: sensor.weather_5h_temp
+                show_state: true
+                show_icon: false
+                show_background: false
+              - name: Date 7h
+                entity: sensor.weather_7h_date
+                show_state: true
+                show_icon: false
+                show_background: false
+              - name: Icon 7h
+                show_icon: true
+                show_background: false
+              - name: Tmp 7h
+                entity: sensor.weather_7h_temp
+                show_state: true
+                show_icon: false
+                show_background: false
+            styles: >
+              ${subButtonIcon[0].setAttribute("icon",
+              getWeatherIcon(hass.states['sensor.weather_1h'].state))}
+
+              ${subButtonIcon[1].setAttribute("icon",
+              getWeatherIcon(hass.states['sensor.weather_3h'].state))}
+
+              ${subButtonIcon[2].setAttribute("icon",
+              getWeatherIcon(hass.states['sensor.weather_5h'].state))}
+
+              ${subButtonIcon[3].setAttribute("icon",
+              getWeatherIcon(hass.states['sensor.weather_7h'].state))}
+            show_icon: false
+            show_attribute: false
+            attribute: temperature
+            rows: '1.5'
+            modules:
+              - '!default'
+              - my_module_6
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            name: Conny
+            show_icon: true
+            button_action:
+              tap_action:
+                action: none
+            sub_button: []
+            rows: '2.2'
+            styles: |-
+              ${icon.setAttribute("icon", 
+                hass.states[entity].state === 'new_moon' ? 'mdi:moon-new' : 
+                hass.states[entity].state === 'waxing_crescent' ?  'mdi:moon-waxing-crescent' :  
+                hass.states[entity].state === 'first_quarter' ?  'mdi:moon-first-quarter' : 
+                hass.states[entity].state === 'waxing_gibbous' ?  'mdi:moon-waxing-gibbous' : 
+                hass.states[entity].state === 'full_moon' ?  'mdi:moon-full' : 
+                hass.states[entity].state === 'waning_gibbous' ?  'mdi:moon-waning-gibbous' : 
+                hass.states[entity].state === 'last_quarter' ?  'mdi:moon-last-quarter' : 
+                hass.states[entity].state === 'waning_crescent' ?  'mdi:moon-waning-crescent' : 
+                'mdi:not-equal')}
+            modules:
+              - '!default'
+              - my_module_1
+              - my_module_9
+            show_state: true
+            tap_action:
+              action: none
+            scrolling_effect: false
+            show_attribute: false
+            show_last_updated: false
+            show_last_changed: false
+            card_layout: large
+            force_icon: false
+            entity: sensor.moon_phase
+            show_name: false
+            grid_options:
+              columns: 6
+              rows: '2.2'
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            name: Conny
+            show_icon: false
+            button_action:
+              tap_action:
+                action: none
+            sub_button:
+              - entity: weather.forecast_home
+                name: Luftdruck
+                show_name: true
+                icon: mdi:gauge
+                show_attribute: true
+                attribute: pressure
+              - entity: weather.forecast_home
+                show_icon: true
+                state_background: false
+                show_background: false
+                show_attribute: true
+                attribute: humidity
+                name: 'Luftfeuchtigkeit: '
+                show_name: true
+                icon: mdi:water-percent
+              - entity: weather.forecast_home
+                show_name: true
+                show_icon: true
+                state_background: false
+                show_background: false
+                name: 'Wind:'
+                icon: mdi:weather-windy
+                show_attribute: true
+                attribute: wind_speed
+              - entity: weather.forecast_home
+                name: UV
+                show_attribute: true
+                attribute: uv_index
+                icon: mdi:sun-wireless-outline
+            rows: '2.2'
+            styles: |-
+              ${icon.setAttribute("icon", 
+                hass.states[entity].state === 'new_moon' ? 'mdi:moon-new' : 
+                hass.states[entity].state === 'waxing_crescent' ?  'mdi:moon-waxing-crescent' :  
+                hass.states[entity].state === 'first_quarter' ?  'mdi:moon-first-quarter' : 
+                hass.states[entity].state === 'waxing_gibbous' ?  'mdi:moon-waxing-gibbous' : 
+                hass.states[entity].state === 'full_moon' ?  'mdi:moon-full' : 
+                hass.states[entity].state === 'waning_gibbous' ?  'mdi:moon-waning-gibbous' : 
+                hass.states[entity].state === 'last_quarter' ?  'mdi:moon-last-quarter' : 
+                hass.states[entity].state === 'waning_crescent' ?  'mdi:moon-waning-crescent' : 
+                'mdi:not-equal')}
+              .bubble-sub-button {
+                margin-left: -25px !important;
+                margin-bottom: 5px;
+              }
+            modules:
+              - '!default'
+              - my_module
+              - my_module_1
+            show_state: false
+            tap_action:
+              action: none
+            scrolling_effect: false
+            show_attribute: false
+            show_last_updated: false
+            show_last_changed: false
+            card_layout: large
+            force_icon: false
+            entity: sensor.moon_phase
+            show_name: false
+            grid_options:
+              columns: 6
+              rows: '2.2'
+          - type: custom:bubble-card
+            card_type: calendar
+            event_action:
+              tap_action:
+                action: more-info
+              double_tap_action:
+                action: none
+              hold_action:
+                action: none
+            entities:
+              - entity: calendar.ms365_kalender
+                color: '#29FBE1'
+            limit: 31
+            modules:
+              - my_module_1
+              - my_module_2
+            rows: '3.6'
+            days: 62
+            styles: |
+              ha-card {
+                --bubble-main-background-color: linear-gradient(145deg,rgba(0, 38, 41, 1) 0%, rgba(0, 64, 69, 1) 50%) !important;
+              }
+            show_end: true
+            show_progress: false
+            show_place: true
+            scrolling_effect: false
+        visibility:
+          - condition: screen
+            media_query: '(min-width: 1024px)'
+      - type: grid
+        cards:
+          - type: custom:bubble-card
+            card_type: button
+            entity: media_player.jbl_link_bar_2
+            show_attribute: false
+            hide:
+              volume_button: true
+              play_pause_button: true
+              next_button: true
+              previous_button: true
+              power_button: true
+            cover_background: false
+            card_layout: large-2-rows
+            rows: '7.8'
+            show_name: false
+            show_icon: true
+            force_icon: false
+            show_state: false
+            show_last_changed: false
+            show_last_updated: false
+            scrolling_effect: false
+            modules:
+              - my_module_1
+              - '!default'
+              - my_module_3
+            styles: |-
+              .bubble-icon-container {
+                position: absolute;
+                height: 100% !important;
+                width: 100% !important;
+                opacity: 0.2
+              }
+              .bubble-media-info-container {
+                background-color: transparent !important;
+                margin-left: -1000px;
+              }
+              .bubble-icon {
+                color: transparent !important;
+              }
+            sub_button:
+              - entity: sensor.uhrzeit
+                show_icon: false
+                show_state: true
+                show_background: false
+                tap_action:
+                  action: none
+              - entity: sensor.datum
+                show_state: true
+                show_icon: false
+                show_arrow: false
+                state_background: false
+                show_background: false
+                tap_action:
+                  action: none
+                double_tap_action:
+                  action: none
+                hold_action:
+                  action: none
+              - entity: sensor.muellnaechster_muell
+                show_state: true
+                state_background: false
+                show_background: false
+                tap_action:
+                  action: none
+              - entity: sensor.muellnaechster_date
+                show_state: true
+                show_icon: false
+                state_background: false
+                show_background: false
+                tap_action:
+                  action: none
+              - entity: media_player.jbl_link_bar_2
+                show_attribute: true
+                attribute: media_title
+                show_icon: false
+                show_background: false
+                tap_action:
+                  action: none
+              - entity: media_player.jbl_link_bar_2
+                show_background: false
+                show_icon: false
+                show_attribute: true
+                attribute: media_artist
+                tap_action:
+                  action: none
+              - entity: media_player.jbl_link_bar_2
+                show_background: false
+                show_icon: false
+                show_attribute: true
+                attribute: media_album_name
+                tap_action:
+                  action: none
+            grid_options:
+              columns: 24
+            button_type: name
+            button_action: {}
+        column_span: 2
+        visibility:
+          - condition: screen
+            media_query: '(min-width: 1024px)'
+      - type: grid
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:bubble-card
+                card_type: button
+                button_type: name
+                name: Conny
+                show_icon: true
+                button_action:
+                  tap_action:
+                    action: none
+                sub_button:
+                  - entity: person.conny
+                    show_state: true
+                    icon: mdi:map-marker-account
+                  - entity: sensor.sm_s911b_battery_level_2
+                    show_state: true
+                rows: '2'
+                styles: ''
+                modules:
+                  - '!default'
+                  - my_module_9
+                  - my_module_1
+                show_state: false
+                tap_action:
+                  action: none
+                scrolling_effect: false
+                show_attribute: false
+                show_last_updated: false
+                show_last_changed: false
+                card_layout: large
+                force_icon: true
+                entity: person.conny
+                icon: mdi:account
+              - type: custom:bubble-card
+                card_type: button
+                button_type: name
+                name: Thomas
+                show_icon: true
+                button_action:
+                  tap_action:
+                    action: none
+                sub_button:
+                  - entity: person.thomas
+                    show_state: true
+                    icon: mdi:map-marker-account
+                  - entity: sensor.sm_s928b_battery_level
+                    show_state: true
+                rows: '2'
+                styles: ''
+                modules:
+                  - '!default'
+                  - my_module_9
+                  - my_module_1
+                show_state: false
+                tap_action:
+                  action: none
+                scrolling_effect: false
+                show_attribute: false
+                show_last_updated: false
+                show_last_changed: false
+                card_layout: large
+                force_icon: true
+                entity: person.thomas
+                icon: mdi:account
+                show_name: true
+            visibility:
+              - condition: screen
+                media_query: '(min-width: 0px)'
+          - type: horizontal-stack
+            cards:
+              - type: custom:bubble-card
+                card_type: button
+                button_type: name
+                name: Gelb
+                show_icon: true
+                button_action:
+                  tap_action:
+                    action: none
+                sub_button:
+                  - entity: sensor.gelbe_tonne
+                    show_state: true
+                    show_icon: false
+                    show_arrow: false
+                    state_background: false
+                    show_background: false
+                    tap_action:
+                      action: none
+                    double_tap_action:
+                      action: none
+                    hold_action:
+                      action: none
+                  - show_icon: false
+                    show_last_changed: false
+                    show_background: false
+                    show_state: true
+                    hide_when_parent_unavailable: false
+                    tap_action:
+                      action: none
+                    double_tap_action:
+                      action: none
+                    hold_action:
+                      action: none
+                    visibility:
+                      - condition: state
+                        entity: sensor.waschmaschine_dauer
+                        state: unknown
+                rows: '2.2'
+                styles: ''
+                modules:
+                  - '!default'
+                  - my_module_9
+                  - my_module_1
+                show_state: false
+                tap_action:
+                  action: none
+                scrolling_effect: false
+                show_attribute: false
+                show_last_updated: false
+                show_last_changed: false
+                card_layout: large
+                force_icon: false
+                entity: sensor.gelbe_tonne
+              - type: custom:bubble-card
+                card_type: button
+                button_type: name
+                name: Blau
+                show_icon: true
+                button_action:
+                  tap_action:
+                    action: none
+                sub_button:
+                  - entity: sensor.blaue_tonne
+                    show_state: true
+                    show_icon: false
+                    show_arrow: false
+                    state_background: false
+                    show_background: false
+                    tap_action:
+                      action: none
+                    double_tap_action:
+                      action: none
+                    hold_action:
+                      action: none
+                  - show_icon: false
+                    show_last_changed: false
+                    show_background: false
+                    show_state: true
+                    hide_when_parent_unavailable: false
+                    tap_action:
+                      action: none
+                    double_tap_action:
+                      action: none
+                    hold_action:
+                      action: none
+                    visibility:
+                      - condition: state
+                        entity: sensor.waschmaschine_dauer
+                        state: unknown
+                rows: '2.2'
+                styles: ''
+                modules:
+                  - '!default'
+                  - my_module_9
+                  - my_module_1
+                show_state: false
+                tap_action:
+                  action: none
+                scrolling_effect: false
+                show_attribute: false
+                show_last_updated: false
+                show_last_changed: false
+                card_layout: large
+                force_icon: false
+                entity: sensor.blaue_tonne
+              - type: custom:bubble-card
+                card_type: button
+                button_type: name
+                name: Schwarz
+                show_icon: true
+                button_action:
+                  tap_action:
+                    action: none
+                sub_button:
+                  - entity: sensor.schwarze_tonne
+                    show_state: true
+                    show_icon: false
+                    show_arrow: false
+                    state_background: false
+                    show_background: false
+                    tap_action:
+                      action: none
+                    double_tap_action:
+                      action: none
+                    hold_action:
+                      action: none
+                  - show_icon: false
+                    show_last_changed: false
+                    show_background: false
+                    show_state: true
+                    hide_when_parent_unavailable: false
+                    tap_action:
+                      action: none
+                    double_tap_action:
+                      action: none
+                    hold_action:
+                      action: none
+                    visibility:
+                      - condition: state
+                        entity: sensor.waschmaschine_dauer
+                        state: unknown
+                rows: '2.2'
+                styles: ''
+                modules:
+                  - '!default'
+                  - my_module_9
+                  - my_module_1
+                show_state: false
+                tap_action:
+                  action: none
+                scrolling_effect: false
+                show_attribute: false
+                show_last_updated: false
+                show_last_changed: false
+                card_layout: large
+                force_icon: false
+                entity: sensor.schwarze_tonne
+            grid_options:
+              columns: 36
+          - type: custom:bubble-card
+            card_type: separator
+            grid_options:
+              columns: 12
+              rows: 0.6
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            entity: media_player.jbl_link_bar_2
+            show_attribute: false
+            name: Previous
+            icon: mdi:skip-previous
+            show_icon: true
+            scrolling_effect: false
+            force_icon: true
+            show_name: false
+            tap_action:
+              action: call-service
+              service: media_player.media_previous_track
+              target:
+                entity_id: media_player.jbl_link_bar_2
+            modules:
+              - my_module_1
+            grid_options:
+              columns: 4
+              rows: '1.5'
+            styles: |-
+              .bubble-icon-container {
+                  background-color: transparent !important;
+                  padding-left:  30%;
+              }
+            rows: '1.5'
+            button_action:
+              tap_action:
+                action: call-service
+                service: media_player.media_previous_track
+                target:
+                  entity_id: media_player.jbl_link_bar_2
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            entity: media_player.jbl_link_bar_2
+            show_attribute: false
+            name: Play/Pause
+            icon: mdi:play-pause
+            show_icon: true
+            scrolling_effect: false
+            force_icon: true
+            show_name: false
+            tap_action:
+              action: call-service
+              service: media_player.media_play_pause
+              target:
+                entity_id: media_player.jbl_link_bar_2
+            modules:
+              - my_module_1
+            grid_options:
+              columns: 4
+              rows: '1.5'
+            styles: |-
+              .bubble-icon-container {
+                  background-color: transparent !important;
+                  padding-left:  30%;
+              }
+            rows: '1.5'
+            button_action:
+              tap_action:
+                action: call-service
+                service: media_player.media_play_pause
+                target:
+                  entity_id: media_player.jbl_link_bar_2
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            entity: media_player.jbl_link_bar_2
+            show_attribute: false
+            name: Next
+            icon: mdi:skip-next
+            show_icon: true
+            scrolling_effect: false
+            force_icon: true
+            show_name: false
+            tap_action:
+              action: call-service
+              service: media_player.media_next_track
+              target:
+                entity_id: media_player.jbl_link_bar_2
+            modules:
+              - my_module_1
+            grid_options:
+              columns: 4
+              rows: '1.5'
+            styles: |-
+              .bubble-icon-container {
+                  background-color: transparent !important;
+                  padding-left:  30%;
+              }
+            rows: '1.5'
+            button_action:
+              tap_action:
+                action: call-service
+                service: media_player.media_next_track
+                target:
+                  entity_id: media_player.jbl_link_bar_2
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            entity: media_player.jbl_link_bar_2
+            show_attribute: false
+            name: Volume -
+            icon: mdi:volume-minus
+            show_icon: true
+            scrolling_effect: false
+            force_icon: true
+            show_name: false
+            tap_action:
+              action: call-service
+              service: media_player.volume_down
+              target:
+                entity_id: media_player.jbl_link_bar_2
+            modules:
+              - my_module_1
+            grid_options:
+              columns: 6
+              rows: '1.5'
+            styles: |-
+              .bubble-icon-container {
+                  background-color: transparent !important;
+                  padding-left:  35%;
+              }
+            rows: '1.5'
+            button_action:
+              tap_action:
+                action: call-service
+                service: media_player.volume_down
+                target:
+                  entity_id: media_player.jbl_link_bar_2
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            entity: media_player.jbl_link_bar_2
+            show_attribute: false
+            name: Volume +
+            icon: mdi:volume-plus
+            show_icon: true
+            scrolling_effect: false
+            force_icon: true
+            show_name: false
+            tap_action:
+              action: call-service
+              service: media_player.volume_up
+              target:
+                entity_id: media_player.jbl_link_bar_2
+            modules:
+              - my_module_1
+            grid_options:
+              columns: 6
+              rows: '1.5'
+            styles: |-
+              .bubble-icon-container {
+                  background-color: transparent !important;
+                  padding-left:  35%;
+              }
+            rows: '1.5'
+            button_action:
+              tap_action:
+                action: call-service
+                service: media_player.volume_up
+                target:
+                  entity_id: media_player.jbl_link_bar_2
+      - type: grid
+        cards:
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            name: Easy Fry
+            show_icon: true
+            button_action:
+              tap_action:
+                action: toggle
+            sub_button:
+              - entity: switch.easy_fry
+                show_state: true
+                show_icon: false
+                show_arrow: false
+                state_background: false
+                show_background: false
+                tap_action:
+                  action: none
+                double_tap_action:
+                  action: none
+                hold_action:
+                  action: none
+                icon: mdi:pump
+            rows: '2.2'
+            styles: |
+              .bubble-background {
+                  opacity: 1 !important;
+                  background: ${state === 'on' ? 'linear-gradient(145deg,rgba(2, 103, 111, 1) 0%, rgba(3, 140, 150, 1) 50%)' : 'linear-gradient(311deg,rgba(0, 38, 41, 1) 0%, rgba(0, 64, 69, 1) 50%)'} !important;
+                }
+            modules:
+              - '!default'
+              - my_module_9
+              - my_module_1
+              - my_module_2
+            show_state: false
+            tap_action:
+              action: none
+            scrolling_effect: false
+            show_attribute: false
+            show_last_updated: false
+            show_last_changed: false
+            card_layout: large
+            force_icon: false
+            entity: switch.easy_fry
+            icon: mdi:french-fries
+            grid_options:
+              columns: 6
+              rows: '2.2'
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            name: Kamin
+            show_icon: true
+            button_action:
+              tap_action:
+                action: toggle
+            sub_button:
+              - entity: switch.kamin_zigbee
+                show_state: true
+                show_icon: false
+                show_arrow: false
+                state_background: false
+                show_background: false
+                tap_action:
+                  action: none
+                double_tap_action:
+                  action: none
+                hold_action:
+                  action: none
+                icon: mdi:pump
+            rows: '2.2'
+            styles: |
+              .bubble-background {
+                  opacity: 1 !important;
+                  background: ${state === 'on' ? 'linear-gradient(145deg,rgba(2, 103, 111, 1) 0%, rgba(3, 140, 150, 1) 50%)' : 'linear-gradient(311deg,rgba(0, 38, 41, 1) 0%, rgba(0, 64, 69, 1) 50%)'} !important;
+                }
+            modules:
+              - '!default'
+              - my_module_9
+              - my_module_1
+              - my_module_2
+            show_state: false
+            tap_action:
+              action: none
+            scrolling_effect: false
+            show_attribute: false
+            show_last_updated: false
+            show_last_changed: false
+            card_layout: large
+            force_icon: false
+            entity: switch.kamin_zigbee
+            icon: mdi:smoke
+            grid_options:
+              columns: 6
+              rows: '2.2'
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            name: Kameras
+            show_icon: true
+            button_action:
+              tap_action:
+                action: navigate
+                navigation_path: /dashboard-unterseiten/kameras
+            sub_button: []
+            rows: '2.2'
+            styles: |
+              .bubble-background {
+                  opacity: 1 !important;
+                  background: ${state === 'on' ? 'linear-gradient(145deg,rgba(2, 103, 111, 1) 0%, rgba(3, 140, 150, 1) 50%)' : 'linear-gradient(311deg,rgba(0, 38, 41, 1) 0%, rgba(0, 64, 69, 1) 50%)'} !important;
+                }
+            modules:
+              - '!default'
+              - my_module_9
+              - my_module_1
+              - my_module_2
+            show_state: false
+            tap_action:
+              action: none
+            scrolling_effect: false
+            show_attribute: false
+            show_last_updated: false
+            show_last_changed: false
+            card_layout: large
+            force_icon: false
+            icon: mdi:cctv
+            grid_options:
+              columns: 6
+              rows: '2.2'
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            name: Musik
+            show_icon: true
+            button_action:
+              tap_action:
+                action: navigate
+                navigation_path: '#music'
+            sub_button: []
+            rows: '2.2'
+            styles: |
+              .bubble-background {
+                  opacity: 1 !important;
+                  background: ${state === 'on' ? 'linear-gradient(145deg,rgba(2, 103, 111, 1) 0%, rgba(3, 140, 150, 1) 50%)' : 'linear-gradient(311deg,rgba(0, 38, 41, 1) 0%, rgba(0, 64, 69, 1) 50%)'} !important;
+                }
+            modules:
+              - '!default'
+              - my_module_2
+              - my_module_1
+              - my_module_9
+            show_state: false
+            tap_action:
+              action: none
+            scrolling_effect: false
+            show_attribute: false
+            show_last_updated: false
+            show_last_changed: false
+            card_layout: large
+            force_icon: false
+            icon: mdi:music
+            grid_options:
+              columns: 6
+        column_span: 1
+      - type: grid
+        cards:
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            entity: light.licht_wohnzimmer
+            modules:
+              - my_module_1
+              - my_module_9
+              - my_module_4
+              - my_module_7
+            rows: '2.2'
+            room_card:
+              square_icon: false
+            sub_button:
+              - entity: light.nspanel1_relay_1
+                name: Deckenlampe
+                show_background: false
+                icon: mdi:ceiling-light
+                light_background: false
+                tap_action:
+                  action: none
+              - entity: light.couchlampe_plug_zigbee
+                name: Couchlampe
+                show_background: false
+                light_background: false
+                icon: mdi:floor-lamp-outline
+                state_background: true
+                show_icon: true
+                tap_action:
+                  action: none
+              - entity: light.tv_backlight
+                name: TV Backlight
+                icon: mdi:television-classic
+                show_background: false
+                state_background: false
+                tap_action:
+                  action: none
+              - entity: binary_sensor.fenstersensor_wohnzimmer_contact
+                name: Fenstersensor WZ
+                show_background: false
+                state_background: true
+                tap_action:
+                  action: none
+            name: Wohnzimmer
+            show_name: true
+            use_accent_color: true
+            show_state: false
+            icon: mdi:sofa
+            styles: |-
+              .bubble-sub-button-1 {
+                background-color: ${hass.states['light.nspanel1_relay_1'].state === 'on' ? 'rgba(18, 207, 224,0.6)' : 'transparent'} !important;
+              }
+              .bubble-sub-button-2 {
+                background-color: ${hass.states['light.couchlampe_plug_zigbee'].state === 'on' ? 'rgba(18, 207, 224,0.6)' : 'transparent'} !important;
+              }
+              .bubble-sub-button-3 {
+                background-color: ${hass.states['light.tv_backlight'].state === 'on' ? 'rgba(18, 207, 224,0.6)' : 'transparent'} !important;
+              }
+              .bubble-sub-button-4 {
+                background-color: ${hass.states['binary_sensor.fenstersensor_wohnzimmer_contact'].state === 'on' ? 'rgba(18, 207, 224,0.6)' : 'transparent'} !important;
+              }
+            grid_options:
+              columns: 6
+              rows: '2.2'
+            button_action:
+              tap_action:
+                action: navigate
+                navigation_path: '#wohnzimmer'
+            tap_action:
+              action: navigate
+              navigation_path: '#wohnzimmer'
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            entity: light.kuche
+            modules:
+              - my_module_1
+              - my_module_9
+              - my_module_4
+              - my_module_7
+            rows: '2.2'
+            room_card:
+              square_icon: false
+            sub_button:
+              - entity: light.deckenlampe_1_licht_kuche_s1
+                name: Deckenlampe
+                show_background: false
+                icon: mdi:ceiling-light
+                light_background: false
+                tap_action:
+                  action: none
+              - entity: binary_sensor.tursensor_kuche_zigbee_contact
+                name: Türsensor Küche
+                show_background: false
+                state_background: true
+                tap_action:
+                  action: none
+            name: Küche
+            show_name: true
+            use_accent_color: true
+            show_state: false
+            icon: mdi:stove
+            styles: |-
+              .bubble-sub-button-1 {
+                background-color: ${hass.states['light.deckenlampe_1_licht_kuche_s1'].state === 'on' ? 'rgba(18, 207, 224,0.6)' : 'transparent'} !important;
+              }
+              .bubble-sub-button-2 {
+                background-color: ${hass.states['binary_sensor.tursensor_kuche_zigbee_contact'].state === 'on' ? 'rgba(18, 207, 224,0.6)' : 'transparent'} !important;
+              }
+            grid_options:
+              columns: 6
+              rows: '2.2'
+            tap_action:
+              action: navigate
+              navigation_path: '#kuche'
+            button_action:
+              tap_action:
+                action: navigate
+                navigation_path: '#kuche'
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            entity: light.licht_bad
+            modules:
+              - my_module_1
+              - my_module_9
+              - my_module_4
+              - my_module_7
+            rows: '2.2'
+            room_card:
+              square_icon: false
+            sub_button:
+              - entity: light.nspanel2_relay_1
+                name: Spiegel
+                show_background: false
+                icon: mdi:mirror-variant
+                light_background: false
+                tap_action:
+                  action: none
+              - entity: light.nspanel2_relay_2
+                name: Deckenlampe
+                show_background: false
+                icon: mdi:ceiling-light
+                light_background: false
+                tap_action:
+                  action: none
+              - entity: binary_sensor.fenstersensor_bad_contact
+                icon: mdi:window-closed-variant
+                name: Fenstersensor Bad
+                show_background: false
+                state_background: true
+                tap_action:
+                  action: none
+            name: Bad
+            show_name: true
+            use_accent_color: true
+            show_state: false
+            icon: mdi:shower
+            styles: |-
+              .bubble-sub-button-1 {
+                background-color: ${hass.states['light.nspanel2_relay_1'].state === 'on' ? 'rgba(18, 207, 224,0.6)' : 'transparent'} !important;
+              }
+              .bubble-sub-button-2 {
+                background-color: ${hass.states['light.nspanel2_relay_2'].state === 'on' ? 'rgba(18, 207, 224,0.6)' : 'transparent'} !important;
+              }
+              .bubble-sub-button-3 {
+                background-color: ${hass.states['binary_sensor.fenstersensor_bad_contact'].state === 'on' ? 'rgba(18, 207, 224,0.6)' : 'transparent'} !important;
+              }
+            grid_options:
+              columns: 6
+              rows: '2.2'
+            tap_action:
+              action: navigate
+              navigation_path: '#bad'
+            button_action:
+              tap_action:
+                action: navigate
+                navigation_path: '#bad'
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            entity: light.licht_gastezimmer
+            modules:
+              - my_module_1
+              - my_module_9
+              - my_module_4
+              - my_module_7
+            rows: '2.2'
+            room_card:
+              square_icon: false
+            sub_button:
+              - entity: light.deckenlampe
+                name: Deckenlampe
+                show_background: false
+                icon: mdi:ceiling-light
+                light_background: false
+                tap_action:
+                  action: none
+              - entity: light.nachttischlampe_gastezimmer
+                name: Nachttischlampe
+                show_background: false
+                light_background: false
+                icon: mdi:floor-lamp-outline
+                state_background: true
+                show_icon: true
+                tap_action:
+                  action: none
+              - entity: binary_sensor.fenstersensor_gastezimmer_zigbee_contact
+                name: Fenstersensor GZ
+                icon: mdi:window-closed-variant
+                show_background: false
+                state_background: true
+                tap_action:
+                  action: none
+            name: Gästezimmer
+            show_name: true
+            use_accent_color: true
+            show_state: false
+            icon: mdi:bed-king-outline
+            styles: |-
+              .bubble-sub-button-1 {
+                background-color: ${hass.states['light.deckenlampe'].state === 'on' ? 'rgba(18, 207, 224,0.6)' : 'transparent'} !important;
+              }
+              .bubble-sub-button-2 {
+                background-color: ${hass.states['light.nachttischlampe_gastezimmer'].state === 'on' ? 'rgba(18, 207, 224,0.6)' : 'transparent'} !important;
+              }
+              .bubble-sub-button-3 {
+                background-color: ${hass.states['binary_sensor.fenstersensor_gastezimmer_zigbee_contact'].state === 'on' ? 'rgba(18, 207, 224,0.6)' : 'transparent'} !important;
+              }
+            grid_options:
+              columns: 6
+              rows: '2.2'
+            tap_action:
+              action: navigate
+              navigation_path: '#gastezimmer'
+            button_action:
+              tap_action:
+                action: navigate
+                navigation_path: '#gastezimmer'
+        column_span: 1
+      - type: grid
+        cards:
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            entity: light.kuche
+            modules:
+              - my_module_1
+              - my_module_9
+              - my_module_4
+              - my_module_7
+            rows: '2.2'
+            room_card:
+              square_icon: false
+            sub_button:
+              - entity: light.lichtschalter_arbeitszimmer
+                name: Deckenlampe
+                show_background: false
+                icon: mdi:ceiling-light
+                light_background: false
+                tap_action:
+                  action: none
+              - entity: light.schreibtischlampe
+                name: Schreibtischlampe
+                icon: mdi:desk-lamp
+                tap_action:
+                  action: none
+              - entity: binary_sensor.fenstersensor_arbeitszimmer_contact
+                name: Fenstersensor AZ
+                show_background: false
+                state_background: true
+                icon: mdi:window-closed-variant
+                tap_action:
+                  action: none
+            name: Arbeitszimmer
+            show_name: true
+            use_accent_color: true
+            show_state: false
+            icon: mdi:chair-rolling
+            styles: |-
+              .bubble-sub-button-1 {
+                background-color: ${hass.states['light.lichtschalter_arbeitszimmer'].state === 'on' ? 'rgba(18, 207, 224,0.6)' : 'transparent'} !important;
+              }
+              .bubble-sub-button-2 {
+                background-color: ${hass.states['light.schreibtischlampe'].state === 'on' ? 'rgba(18, 207, 224,0.6)' : 'transparent'} !important;
+              }
+              .bubble-sub-button-3 {
+                background-color: ${hass.states['binary_sensor.fenstersensor_arbeitszimmer_contact'].state === 'on' ? 'rgba(18, 207, 224,0.6)' : 'transparent'} !important;
+              }
+            grid_options:
+              columns: 6
+              rows: '2.2'
+            tap_action:
+              action: navigate
+              navigation_path: '#arbeitszimmer'
+            button_action:
+              tap_action:
+                action: navigate
+                navigation_path: '#arbeitszimmer'
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            entity: light.kuche
+            modules:
+              - my_module_1
+              - my_module_9
+              - my_module_4
+              - my_module_7
+            rows: '2.2'
+            room_card:
+              square_icon: false
+            sub_button:
+              - entity: light.lichtschalter_schlafzimmer
+                name: Deckenlampe
+                show_background: false
+                icon: mdi:ceiling-light
+                light_background: false
+                tap_action:
+                  action: none
+              - entity: light.duftlampe
+                name: Duftlampe
+                tap_action:
+                  action: none
+              - entity: binary_sensor.fenstersensor_schlafzimmer_contact
+                name: Fenstersensor SZ
+                show_background: false
+                state_background: true
+                icon: mdi:window-closed-variant
+                tap_action:
+                  action: none
+            name: Schlafzimmer
+            show_name: true
+            use_accent_color: true
+            show_state: false
+            icon: mdi:bed-king-outline
+            styles: |-
+              .bubble-sub-button-1 {
+                background-color: ${hass.states['light.lichtschalter_schlafzimmer'].state === 'on' ? 'rgba(18, 207, 224,0.6)' : 'transparent'} !important;
+              }
+              .bubble-sub-button-2 {
+                background-color: ${hass.states['light.duftlampe'].state === 'on' ? 'rgba(18, 207, 224,0.6)' : 'transparent'} !important;
+              }
+              .bubble-sub-button-3 {
+                background-color: ${hass.states['binary_sensor.fenstersensor_schlafzimmer_contact'].state === 'on' ? 'rgba(18, 207, 224,0.6)' : 'transparent'} !important;
+              }
+              light.duftlampe
+            grid_options:
+              columns: 6
+              rows: '2.2'
+            tap_action:
+              action: navigate
+              navigation_path: '#schlafzimmer'
+            button_action:
+              tap_action:
+                action: navigate
+                navigation_path: '#schlafzimmer'
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            entity: light.kuche
+            modules:
+              - my_module_1
+              - my_module_9
+              - my_module_4
+              - my_module_7
+            rows: '2.2'
+            room_card:
+              square_icon: false
+            sub_button:
+              - entity: light.light_switch_1_channel
+                name: Deckenlampe
+                show_background: false
+                icon: mdi:ceiling-light
+                light_background: false
+                tap_action:
+                  action: none
+              - entity: light.schreibtischlampe_kiz
+                name: Schreibtischlampe KiZ
+                show_background: false
+                state_background: true
+                icon: mdi:desk-lamp-on
+                tap_action:
+                  action: none
+            name: Kinderzimmer
+            show_name: true
+            use_accent_color: true
+            show_state: false
+            icon: mdi:teddy-bear
+            styles: |-
+              .bubble-sub-button-1 {
+                background-color: ${hass.states['light.light_switch_1_channel'].state === 'on' ? 'rgba(18, 207, 224,0.6)' : 'transparent'} !important;
+              }
+              .bubble-sub-button-2 {
+                background-color: ${hass.states['light.schreibtischlampe_kiz'].state === 'on' ? 'rgba(18, 207, 224,0.6)' : 'transparent'} !important;
+              }
+            grid_options:
+              columns: 6
+              rows: '2.2'
+            scrolling_effect: false
+            tap_action:
+              action: navigate
+              navigation_path: '#kinderzimmer'
+            button_action:
+              tap_action:
+                action: navigate
+                navigation_path: '#kinderzimmer'
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            modules:
+              - my_module_1
+              - my_module_9
+              - my_module_4
+              - my_module_7
+            rows: '2.2'
+            room_card:
+              square_icon: false
+            sub_button:
+              - entity: light.lichtschalter_vorflur_2
+                name: Hofbeleuchtung
+                show_background: false
+                icon: mdi:outdoor-lamp
+                light_background: false
+                tap_action:
+                  action: none
+              - entity: light.lichtschalter_eingang
+                name: Eingang
+                icon: mdi:coach-lamp-variant
+                tap_action:
+                  action: none
+              - entity: light.paulmann2
+                name: Scheune
+                show_background: false
+                state_background: true
+                icon: mdi:coach-lamp
+                tap_action:
+                  action: none
+              - entity: light.paulmann1
+                name: Pavillon
+                icon: mdi:greenhouse
+                tap_action:
+                  action: none
+            name: Außenbereich
+            show_name: true
+            use_accent_color: true
+            show_state: false
+            icon: mdi:forest-outline
+            styles: |-
+              .bubble-sub-button-1 {
+                background-color: ${hass.states['light.lichtschalter_vorflur_2'].state === 'on' ? 'rgba(18, 207, 224,0.6)' : 'transparent'} !important;
+              }
+              .bubble-sub-button-2 {
+                background-color: ${hass.states['light.lichtschalter_eingang'].state === 'on' ? 'rgba(18, 207, 224,0.6)' : 'transparent'} !important;
+              }
+              .bubble-sub-button-3 {
+                background-color: ${hass.states['light.paulmann2'].state === 'on' ? 'rgba(18, 207, 224,0.6)' : 'transparent'} !important;
+              }
+              .bubble-sub-button-4 {
+                background-color: ${hass.states['light.paulmann1'].state === 'on' ? 'rgba(18, 207, 224,0.6)' : 'transparent'} !important;
+              }
+            grid_options:
+              columns: 6
+              rows: '2.2'
+            entity: light.lichtschalter_vorflur_2
+            tap_action:
+              action: navigate
+              navigation_path: '#aussenbereich'
+            button_action:
+              tap_action:
+                action: navigate
+                navigation_path: '#aussenbereich'
+      - type: grid
+        cards:
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            modules:
+              - my_module_1
+              - my_module_9
+              - my_module_5
+            rows: '2.2'
+            room_card:
+              square_icon: false
+            sub_button: []
+            name: System
+            show_name: true
+            use_accent_color: true
+            show_state: false
+            icon: mdi:cog
+            styles: ''
+            grid_options:
+              columns: 6
+              rows: '2.2'
+            button_action:
+              tap_action:
+                action: navigate
+                navigation_path: '#system'
+            tap_action:
+              action: navigate
+              navigation_path: '#system'
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            modules:
+              - my_module_1
+              - my_module_9
+              - my_module_5
+            rows: '2.2'
+            room_card:
+              square_icon: false
+            sub_button: []
+            name: Energie
+            show_name: true
+            use_accent_color: true
+            show_state: false
+            icon: mdi:home-lightning-bolt-outline
+            styles: ''
+            grid_options:
+              columns: 6
+              rows: '2.2'
+            button_action:
+              tap_action:
+                action: navigate
+                navigation_path: '#energy'
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            modules:
+              - my_module_1
+              - my_module_9
+              - my_module_5
+            rows: '2.2'
+            room_card:
+              square_icon: false
+            sub_button: []
+            name: Solar
+            show_name: true
+            use_accent_color: true
+            show_state: false
+            icon: mdi:solar-power-variant-outline
+            styles: ''
+            grid_options:
+              columns: 6
+              rows: '2.2'
+            button_action:
+              tap_action:
+                action: navigate
+                navigation_path: '#solar'
+            tap_action:
+              action: navigate
+              navigation_path: '#solar'
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            modules:
+              - my_module_1
+              - my_module_9
+              - my_module_5
+            rows: '2.2'
+            room_card:
+              square_icon: false
+            sub_button: []
+            name: Batterien
+            show_name: true
+            use_accent_color: true
+            show_state: false
+            icon: mdi:home-battery-outline
+            styles: ''
+            grid_options:
+              columns: 6
+              rows: '2.2'
+            button_action:
+              tap_action:
+                action: navigate
+                navigation_path: '#battery'
+      - type: grid
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: custom:bubble-card
+                card_type: pop-up
+                hash: '#wohnzimmer'
+                button_type: name
+                show_header: true
+                name: Wohnzimmer
+                icon: mdi:sofa
+                bg_opacity: '0'
+                bg_blur: '0'
+                backdrop_blur: '0'
+                shadow_opacity: '0'
+                sub_button:
+                  - entity: sensor.nspanel1_temperature
+                    show_state: true
+                    show_background: false
+                modules:
+                  - my_module_1
+                scrolling_effect: false
+              - type: horizontal-stack
+                cards:
+                  - type: custom:bubble-card
+                    card_type: button
+                    button_type: switch
+                    entity: light.nspanel1_relay_1
+                    modules:
+                      - my_module_1
+                      - my_module_9
+                      - subbutton_colors
+                    rows: '2.2'
+                    room_card:
+                      square_icon: false
+                    sub_button: []
+                    name: Deckenlampe
+                    show_name: true
+                    use_accent_color: true
+                    show_state: false
+                    icon: mdi:ceiling-light
+                    styles: |-
+                      .bubble-background {
+                          opacity: 1 !important;
+                          background: ${state === 'on' ? 'linear-gradient(145deg,rgba(2, 103, 111, 1) 0%, rgba(3, 140, 150, 1) 50%)' : 'linear-gradient(145deg,rgba(0, 38, 41, 1) 0%, rgba(0, 64, 69, 1) 50%)'} !important;
+                        }
+                    grid_options:
+                      columns: 6
+                      rows: '2.2'
+                  - type: custom:bubble-card
+                    card_type: button
+                    button_type: switch
+                    entity: light.couchlampe_plug_zigbee
+                    modules:
+                      - my_module_1
+                      - my_module_9
+                      - subbutton_colors
+                    rows: '2.2'
+                    room_card:
+                      square_icon: false
+                    sub_button: []
+                    name: Couchlampe
+                    show_name: true
+                    use_accent_color: true
+                    show_state: false
+                    icon: mdi:floor-lamp
+                    styles: |-
+                      .bubble-background {
+                          opacity: 1 !important;
+                          background: ${state === 'on' ? 'linear-gradient(145deg,rgba(2, 103, 111, 1) 0%, rgba(3, 140, 150, 1) 50%)' : 'linear-gradient(145deg,rgba(0, 38, 41, 1) 0%, rgba(0, 64, 69, 1) 50%)'} !important;
+                        }
+                    grid_options:
+                      columns: 6
+                      rows: '2.2'
+              - type: custom:bubble-card
+                card_type: button
+                button_type: slider
+                entity: light.tv_backlight
+                show_attribute: true
+                sub_button:
+                  - entity: light.tv_backlight
+                    show_attribute: false
+                    attribute: supported_color_modes
+                    show_background: true
+                    show_name: false
+                    icon: mdi:palette
+                    show_icon: true
+                attribute: supported_color_modes
+                use_accent_color: true
+                allow_light_slider_to_0: false
+                modules:
+                  - my_module_1
+                tap_action:
+                  action: none
+                styles: |-
+                  .bubble-background {
+                      opacity: 1 !important;
+                      background: ${state === 'on' ? 'linear-gradient(145deg,rgba(2, 103, 111, 1) 0%, rgba(3, 140, 150, 1) 50%)' : 'linear-gradient(145deg,rgba(0, 38, 41, 1) 0%, rgba(0, 64, 69, 1) 50%)'} !important;
+                    }
+              - type: custom:bubble-card
+                card_type: climate
+                entity: climate.heizung_wohnzimmer
+                sub_button:
+                  - name: HVAC modes menu
+                    select_attribute: hvac_modes
+                    state_background: false
+                    show_arrow: false
+                min_temp: 16
+                max_temp: 22
+                step: 1
+                state_color: true
+                modules:
+                  - my_module_1
+                  - '!default'
+                scrolling_effect: false
+          - type: vertical-stack
+            cards:
+              - type: custom:bubble-card
+                card_type: pop-up
+                hash: '#kuche'
+                button_type: name
+                show_header: true
+                name: Küche
+                icon: mdi:stove
+                bg_opacity: '0'
+                bg_blur: '0'
+                backdrop_blur: '0'
+                shadow_opacity: '0'
+                sub_button:
+                  - entity: sensor.temperatursensor_kuche_temperature
+                    show_state: true
+                    show_background: false
+                modules:
+                  - my_module_1
+                scrolling_effect: false
+              - type: horizontal-stack
+                cards:
+                  - type: custom:bubble-card
+                    card_type: button
+                    button_type: switch
+                    entity: light.deckenlampe_1_licht_kuche_s1
+                    modules:
+                      - my_module_1
+                      - my_module_9
+                      - subbutton_colors
+                    rows: '2.2'
+                    room_card:
+                      square_icon: false
+                    sub_button: []
+                    name: Deckenlampe
+                    show_name: true
+                    use_accent_color: true
+                    show_state: false
+                    icon: mdi:ceiling-light
+                    styles: |-
+                      .bubble-background {
+                          opacity: 1 !important;
+                          background: ${state === 'on' ? 'linear-gradient(145deg,rgba(2, 103, 111, 1) 0%, rgba(3, 140, 150, 1) 50%)' : 'linear-gradient(145deg,rgba(0, 38, 41, 1) 0%, rgba(0, 64, 69, 1) 50%)'} !important;
+                        }
+                    grid_options:
+                      columns: 6
+                      rows: '2.2'
+          - type: vertical-stack
+            cards:
+              - type: custom:bubble-card
+                card_type: pop-up
+                hash: '#bad'
+                button_type: name
+                show_header: true
+                name: Bad
+                icon: mdi:shower
+                bg_opacity: '0'
+                bg_blur: '0'
+                backdrop_blur: '0'
+                shadow_opacity: '0'
+                sub_button:
+                  - entity: sensor.fenstersensor_bad_device_temperature
+                    show_state: true
+                    show_background: false
+                modules:
+                  - my_module_1
+                tap_action:
+                  action: none
+                button_action:
+                  tap_action:
+                    action: none
+                scrolling_effect: false
+              - type: horizontal-stack
+                cards:
+                  - type: custom:bubble-card
+                    card_type: button
+                    button_type: switch
+                    entity: light.nspanel2_relay_1
+                    modules:
+                      - my_module_1
+                      - my_module_9
+                      - subbutton_colors
+                    rows: '2.2'
+                    room_card:
+                      square_icon: false
+                    sub_button: []
+                    name: Spiegel
+                    show_name: true
+                    use_accent_color: true
+                    show_state: false
+                    icon: mdi:mirror-variant
+                    styles: |-
+                      .bubble-background {
+                          opacity: 1 !important;
+                          background: ${state === 'on' ? 'linear-gradient(145deg,rgba(2, 103, 111, 1) 0%, rgba(3, 140, 150, 1) 50%)' : 'linear-gradient(145deg,rgba(0, 38, 41, 1) 0%, rgba(0, 64, 69, 1) 50%)'} !important;
+                        }
+                    grid_options:
+                      columns: 6
+                      rows: '2.2'
+                    tap_action:
+                      action: toggle
+                    button_action: {}
+                  - type: custom:bubble-card
+                    card_type: button
+                    button_type: switch
+                    entity: switch.nspanel2_relay_2
+                    modules:
+                      - my_module_1
+                      - my_module_9
+                      - subbutton_colors
+                    rows: '2.2'
+                    room_card:
+                      square_icon: false
+                    sub_button: []
+                    name: Deckenlampe
+                    show_name: true
+                    use_accent_color: true
+                    show_state: false
+                    icon: mdi:ceiling-light
+                    styles: |-
+                      .bubble-background {
+                          opacity: 1 !important;
+                          background: ${state === 'on' ? 'linear-gradient(145deg,rgba(2, 103, 111, 1) 0%, rgba(3, 140, 150, 1) 50%)' : 'linear-gradient(145deg,rgba(0, 38, 41, 1) 0%, rgba(0, 64, 69, 1) 50%)'} !important;
+                        }
+                    grid_options:
+                      columns: 6
+                      rows: '2.2'
+              - type: custom:bubble-card
+                card_type: climate
+                entity: climate.thermostat_bad_1
+                sub_button:
+                  - name: HVAC modes menu
+                    select_attribute: hvac_modes
+                    state_background: false
+                    show_arrow: false
+                min_temp: 16
+                max_temp: 22
+                step: 1
+                state_color: true
+                modules:
+                  - my_module_1
+                  - '!default'
+                scrolling_effect: false
+          - type: vertical-stack
+            cards:
+              - type: custom:bubble-card
+                card_type: pop-up
+                hash: '#gastezimmer'
+                button_type: name
+                show_header: true
+                name: Gästezimmer
+                icon: mdi:bed-double-outline
+                bg_opacity: '0'
+                bg_blur: '0'
+                backdrop_blur: '0'
+                shadow_opacity: '0'
+                sub_button:
+                  - entity: sensor.fenstersensor_gastezimmer_zigbee_device_temperature
+                    show_state: true
+                    show_background: false
+                modules:
+                  - my_module_1
+                tap_action:
+                  action: none
+                button_action:
+                  tap_action:
+                    action: none
+                scrolling_effect: false
+              - type: horizontal-stack
+                cards:
+                  - type: custom:bubble-card
+                    card_type: button
+                    button_type: switch
+                    entity: light.nachttischlampe_gastezimmer
+                    modules:
+                      - my_module_1
+                      - my_module_9
+                      - subbutton_colors
+                    rows: '2.2'
+                    room_card:
+                      square_icon: false
+                    sub_button: []
+                    name: Nachttischlampe
+                    show_name: true
+                    use_accent_color: true
+                    show_state: false
+                    icon: mdi:desk-lamp-on
+                    styles: |-
+                      .bubble-background {
+                          opacity: 1 !important;
+                          background: ${state === 'on' ? 'linear-gradient(145deg,rgba(2, 103, 111, 1) 0%, rgba(3, 140, 150, 1) 50%)' : 'linear-gradient(145deg,rgba(0, 38, 41, 1) 0%, rgba(0, 64, 69, 1) 50%)'} !important;
+                        }
+                    grid_options:
+                      columns: 6
+                      rows: '2.2'
+                    tap_action:
+                      action: toggle
+                    button_action: {}
+                  - type: custom:bubble-card
+                    card_type: button
+                    button_type: switch
+                    entity: light.deckenlampe
+                    modules:
+                      - my_module_1
+                      - my_module_9
+                      - subbutton_colors
+                    rows: '2.2'
+                    room_card:
+                      square_icon: false
+                    sub_button: []
+                    name: Deckenlampe
+                    show_name: true
+                    use_accent_color: true
+                    show_state: false
+                    icon: mdi:ceiling-light
+                    styles: |-
+                      .bubble-background {
+                          opacity: 1 !important;
+                          background: ${state === 'on' ? 'linear-gradient(145deg,rgba(2, 103, 111, 1) 0%, rgba(3, 140, 150, 1) 50%)' : 'linear-gradient(145deg,rgba(0, 38, 41, 1) 0%, rgba(0, 64, 69, 1) 50%)'} !important;
+                        }
+                    grid_options:
+                      columns: 6
+                      rows: '2.2'
+              - type: custom:bubble-card
+                card_type: climate
+                entity: climate.thermostat_gastezimmer
+                sub_button:
+                  - name: HVAC modes menu
+                    select_attribute: hvac_modes
+                    state_background: false
+                    show_arrow: false
+                min_temp: 16
+                max_temp: 22
+                step: 1
+                state_color: true
+                modules:
+                  - my_module_1
+                  - '!default'
+                scrolling_effect: false
+          - type: vertical-stack
+            cards:
+              - type: custom:bubble-card
+                card_type: pop-up
+                hash: '#arbeitszimmer'
+                button_type: name
+                show_header: true
+                name: Arbeitszimmer
+                icon: mdi:chair-rolling
+                bg_opacity: '0'
+                bg_blur: '0'
+                backdrop_blur: '0'
+                shadow_opacity: '0'
+                sub_button:
+                  - entity: sensor.fenstersensor_arbeitszimmer_device_temperature
+                    show_state: true
+                    show_background: false
+                modules:
+                  - my_module_1
+                scrolling_effect: false
+              - type: horizontal-stack
+                cards:
+                  - type: custom:bubble-card
+                    card_type: button
+                    button_type: switch
+                    entity: light.lichtschalter_arbeitszimmer
+                    modules:
+                      - my_module_1
+                      - my_module_9
+                      - subbutton_colors
+                    rows: '2.2'
+                    room_card:
+                      square_icon: false
+                    sub_button: []
+                    name: Deckenlampe
+                    show_name: true
+                    use_accent_color: true
+                    show_state: false
+                    icon: mdi:ceiling-light
+                    styles: |-
+                      .bubble-background {
+                          opacity: 1 !important;
+                          background: ${state === 'on' ? 'linear-gradient(145deg,rgba(2, 103, 111, 1) 0%, rgba(3, 140, 150, 1) 50%)' : 'linear-gradient(145deg,rgba(0, 38, 41, 1) 0%, rgba(0, 64, 69, 1) 50%)'} !important;
+                        }
+                    grid_options:
+                      columns: 6
+                      rows: '2.2'
+                  - type: custom:bubble-card
+                    card_type: button
+                    button_type: switch
+                    entity: light.schreibtischlampe
+                    modules:
+                      - my_module_1
+                      - my_module_9
+                      - subbutton_colors
+                    rows: '2.2'
+                    room_card:
+                      square_icon: false
+                    sub_button: []
+                    name: Schreibtischlampe
+                    show_name: true
+                    use_accent_color: true
+                    show_state: false
+                    icon: mdi:desk-lamp-on
+                    styles: |-
+                      .bubble-background {
+                          opacity: 1 !important;
+                          background: ${state === 'on' ? 'linear-gradient(145deg,rgba(2, 103, 111, 1) 0%, rgba(3, 140, 150, 1) 50%)' : 'linear-gradient(145deg,rgba(0, 38, 41, 1) 0%, rgba(0, 64, 69, 1) 50%)'} !important;
+                        }
+                    grid_options:
+                      columns: 6
+                      rows: '2.2'
+                    scrolling_effect: true
+          - type: vertical-stack
+            cards:
+              - type: custom:bubble-card
+                card_type: pop-up
+                hash: '#schlafzimmer'
+                button_type: name
+                show_header: true
+                name: Schlafzimmer
+                icon: mdi:bed-double-outline
+                bg_opacity: '0'
+                bg_blur: '0'
+                backdrop_blur: '0'
+                shadow_opacity: '0'
+                sub_button:
+                  - entity: sensor.fenstersensor_schlafzimmer_device_temperature
+                    show_state: true
+                    show_background: false
+                modules:
+                  - my_module_1
+                scrolling_effect: false
+              - type: horizontal-stack
+                cards:
+                  - type: custom:bubble-card
+                    card_type: button
+                    button_type: switch
+                    entity: light.lichtschalter_schlafzimmer
+                    modules:
+                      - my_module_1
+                      - my_module_9
+                      - subbutton_colors
+                    rows: '2.2'
+                    room_card:
+                      square_icon: false
+                    sub_button: []
+                    name: Deckenlampe
+                    show_name: true
+                    use_accent_color: true
+                    show_state: false
+                    icon: mdi:ceiling-light
+                    styles: |-
+                      .bubble-background {
+                          opacity: 1 !important;
+                          background: ${state === 'on' ? 'linear-gradient(145deg,rgba(2, 103, 111, 1) 0%, rgba(3, 140, 150, 1) 50%)' : 'linear-gradient(145deg,rgba(0, 38, 41, 1) 0%, rgba(0, 64, 69, 1) 50%)'} !important;
+                        }
+                    grid_options:
+                      columns: 6
+                      rows: '2.2'
+                  - type: custom:bubble-card
+                    card_type: button
+                    button_type: switch
+                    entity: light.duftlampe
+                    modules:
+                      - my_module_1
+                      - my_module_9
+                      - subbutton_colors
+                    rows: '2.2'
+                    room_card:
+                      square_icon: false
+                    sub_button: []
+                    name: Duftlampe
+                    show_name: true
+                    use_accent_color: true
+                    show_state: false
+                    icon: ''
+                    styles: |-
+                      .bubble-background {
+                          opacity: 1 !important;
+                          background: ${state === 'on' ? 'linear-gradient(145deg,rgba(2, 103, 111, 1) 0%, rgba(3, 140, 150, 1) 50%)' : 'linear-gradient(145deg,rgba(0, 38, 41, 1) 0%, rgba(0, 64, 69, 1) 50%)'} !important;
+                        }
+                    grid_options:
+                      columns: 6
+                      rows: '2.2'
+                    scrolling_effect: true
+          - type: vertical-stack
+            cards:
+              - type: custom:bubble-card
+                card_type: pop-up
+                hash: '#kinderzimmer'
+                button_type: name
+                show_header: true
+                name: Kinderzimmer
+                icon: mdi:teddy-bear
+                bg_opacity: '0'
+                bg_blur: '0'
+                backdrop_blur: '0'
+                shadow_opacity: '0'
+                sub_button: []
+                modules:
+                  - my_module_1
+                scrolling_effect: false
+              - type: horizontal-stack
+                cards:
+                  - type: custom:bubble-card
+                    card_type: button
+                    button_type: switch
+                    entity: light.light_switch_1_channel
+                    modules:
+                      - my_module_1
+                      - my_module_9
+                      - subbutton_colors
+                    rows: '2.2'
+                    room_card:
+                      square_icon: false
+                    sub_button: []
+                    name: Deckenlampe
+                    show_name: true
+                    use_accent_color: true
+                    show_state: false
+                    icon: mdi:ceiling-light
+                    styles: |-
+                      .bubble-background {
+                          opacity: 1 !important;
+                          background: ${state === 'on' ? 'linear-gradient(145deg,rgba(2, 103, 111, 1) 0%, rgba(3, 140, 150, 1) 50%)' : 'linear-gradient(145deg,rgba(0, 38, 41, 1) 0%, rgba(0, 64, 69, 1) 50%)'} !important;
+                        }
+                    grid_options:
+                      columns: 6
+                      rows: '2.2'
+                  - type: custom:bubble-card
+                    card_type: button
+                    button_type: switch
+                    entity: light.schreibtischlampe_kiz
+                    modules:
+                      - my_module_1
+                      - my_module_9
+                      - subbutton_colors
+                    rows: '2.2'
+                    room_card:
+                      square_icon: false
+                    sub_button: []
+                    name: Schreibtischlampe
+                    show_name: true
+                    use_accent_color: true
+                    show_state: false
+                    icon: mdi:desk-lamp
+                    styles: |-
+                      .bubble-background {
+                          opacity: 1 !important;
+                          background: ${state === 'on' ? 'linear-gradient(145deg,rgba(2, 103, 111, 1) 0%, rgba(3, 140, 150, 1) 50%)' : 'linear-gradient(145deg,rgba(0, 38, 41, 1) 0%, rgba(0, 64, 69, 1) 50%)'} !important;
+                        }
+                    grid_options:
+                      columns: 6
+                      rows: '2.2'
+                    scrolling_effect: false
+          - type: vertical-stack
+            cards:
+              - type: custom:bubble-card
+                card_type: pop-up
+                hash: '#aussenbereich'
+                button_type: name
+                show_header: true
+                name: Außenbereich
+                icon: mdi:forest-outline
+                bg_opacity: '0'
+                bg_blur: '0'
+                backdrop_blur: '0'
+                shadow_opacity: '0'
+                sub_button: []
+                modules:
+                  - my_module_1
+                scrolling_effect: false
+              - type: horizontal-stack
+                cards:
+                  - type: custom:bubble-card
+                    card_type: button
+                    button_type: switch
+                    entity: light.lichtschalter_vorflur_2
+                    modules:
+                      - my_module_1
+                      - my_module_9
+                      - subbutton_colors
+                    rows: '2.2'
+                    room_card:
+                      square_icon: false
+                    sub_button: []
+                    name: Hofbeleuchtung
+                    show_name: true
+                    use_accent_color: true
+                    show_state: false
+                    icon: mdi:outdoor-lamp
+                    styles: |-
+                      .bubble-background {
+                          opacity: 1 !important;
+                          background: ${state === 'on' ? 'linear-gradient(145deg,rgba(2, 103, 111, 1) 0%, rgba(3, 140, 150, 1) 50%)' : 'linear-gradient(145deg,rgba(0, 38, 41, 1) 0%, rgba(0, 64, 69, 1) 50%)'} !important;
+                        }
+                    grid_options:
+                      columns: 6
+                      rows: '2.2'
+                    scrolling_effect: false
+                  - type: custom:bubble-card
+                    card_type: button
+                    button_type: switch
+                    entity: light.lichtschalter_eingang
+                    modules:
+                      - my_module_1
+                      - my_module_9
+                      - subbutton_colors
+                    rows: '2.2'
+                    room_card:
+                      square_icon: false
+                    sub_button: []
+                    name: Eingangslicht
+                    show_name: true
+                    use_accent_color: true
+                    show_state: false
+                    icon: mdi:coach-lamp
+                    styles: |-
+                      .bubble-background {
+                          opacity: 1 !important;
+                          background: ${state === 'on' ? 'linear-gradient(145deg,rgba(2, 103, 111, 1) 0%, rgba(3, 140, 150, 1) 50%)' : 'linear-gradient(145deg,rgba(0, 38, 41, 1) 0%, rgba(0, 64, 69, 1) 50%)'} !important;
+                        }
+                    grid_options:
+                      columns: 6
+                      rows: '2.2'
+                    scrolling_effect: false
+              - type: custom:bubble-card
+                card_type: button
+                button_type: slider
+                entity: light.paulmann2
+                show_attribute: false
+                sub_button:
+                  - entity: light.paulmann2
+                    show_attribute: false
+                    attribute: supported_color_modes
+                    show_background: true
+                    show_name: false
+                    icon: mdi:palette
+                    show_icon: true
+                attribute: supported_color_modes
+                use_accent_color: true
+                allow_light_slider_to_0: false
+                modules:
+                  - my_module_1
+                tap_action:
+                  action: none
+                styles: |-
+                  .bubble-background {
+                      opacity: 1 !important;
+                      background: ${state === 'on' ? 'linear-gradient(145deg,rgba(2, 103, 111, 1) 0%, rgba(3, 140, 150, 1) 50%)' : 'linear-gradient(145deg,rgba(0, 38, 41, 1) 0%, rgba(0, 64, 69, 1) 50%)'} !important;
+                    }
+                name: Außenlicht - Scheune
+                icon: mdi:coach-lamp-variant
+              - type: custom:bubble-card
+                card_type: button
+                button_type: slider
+                entity: light.paulmann1
+                show_attribute: false
+                sub_button:
+                  - entity: light.paulmann1
+                    show_attribute: false
+                    attribute: supported_color_modes
+                    show_background: true
+                    show_name: false
+                    icon: mdi:palette
+                    show_icon: true
+                attribute: supported_color_modes
+                use_accent_color: true
+                allow_light_slider_to_0: false
+                modules:
+                  - my_module_1
+                tap_action:
+                  action: none
+                styles: |-
+                  .bubble-background {
+                      opacity: 1 !important;
+                      background: ${state === 'on' ? 'linear-gradient(145deg,rgba(2, 103, 111, 1) 0%, rgba(3, 140, 150, 1) 50%)' : 'linear-gradient(145deg,rgba(0, 38, 41, 1) 0%, rgba(0, 64, 69, 1) 50%)'} !important;
+                    }
+                name: Pavillon
+                icon: mdi:greenhouse
+                scrolling_effect: true
+      - type: grid
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: custom:bubble-card
+                card_type: pop-up
+                hash: '#energy'
+                button_type: name
+                show_header: true
+                name: Energie
+                icon: mdi:home-lightning-bolt-outline
+                bg_opacity: '0'
+                bg_blur: '0'
+                backdrop_blur: '0'
+                shadow_opacity: '0'
+                sub_button: []
+                modules:
+                  - my_module_1
+                width_desktop: 90%
+                tap_action:
+                  action: navigate
+                  navigation_path: http://192.168.188.85:8123/a0d7b954_grafana/ingress
+              - type: custom:addon-iframe-card
+                url: >-
+                  /api/hassio_ingress/SoaNRyWbyia7OohGX5Mu9VpzShqz9OuOX8Og9pStpxg/public-dashboards/84800b979f4f4ac29f6fae2af23246df
+                aspect_ratio: 50%
+                grid_options:
+                  columns: full
+                  rows: 8
+              - type: custom:addon-iframe-card
+                url: http://192.168.188.85:8123/a0d7b954_grafana/ingress
+                aspect_ratio: 0.2%
+          - type: vertical-stack
+            cards:
+              - type: custom:bubble-card
+                card_type: pop-up
+                hash: '#klaranlage'
+                button_type: name
+                width_desktop: 70%
+                name: Kläranlage
+                modules:
+                  - my_module_1
+                icon: mdi:air-filter
+              - type: custom:addon-iframe-card
+                url: >-
+                  http://192.168.188.85:8123/api/hassio_ingress/SoaNRyWbyia7OohGX5Mu9VpzShqz9OuOX8Og9pStpxg/public-dashboards/c7a389763cd14abe8f4f229b2ca258c0
+                aspect_ratio: 35%
+          - type: vertical-stack
+            cards:
+              - type: custom:bubble-card
+                card_type: pop-up
+                hash: '#system'
+                button_type: name
+                name: System
+                show_icon: true
+                icon: mdi:cog
+                width_desktop: 90%
+                modules:
+                  - my_module_1
+              - square: true
+                type: grid
+                cards:
+                  - type: vertical-stack
+                    cards:
+                      - type: custom:bubble-card
+                        card_type: button
+                        button_type: switch
+                        entity: sensor.system_monitor_ipv4_adresse_enp0s18
+                        scrolling_effect: false
+                        show_icon: false
+                        name: 'IP-Adresse:'
+                        show_state: true
+                    title: Homeassistant
+                columns: 3
+          - type: vertical-stack
+            cards:
+              - type: custom:bubble-card
+                card_type: pop-up
+                hash: '#solar'
+                button_type: name
+                show_header: true
+                name: Solar
+                icon: mdi:home-lightning-bolt-outline
+                bg_opacity: '0'
+                bg_blur: '0'
+                backdrop_blur: '0'
+                shadow_opacity: '0'
+                sub_button: []
+                modules:
+                  - my_module_1
+                width_desktop: 90%
+                tap_action:
+                  action: navigate
+                  navigation_path: http://192.168.188.85:8123/a0d7b954_grafana/ingress
+              - type: custom:addon-iframe-card
+                url: >-
+                  /api/hassio_ingress/SoaNRyWbyia7OohGX5Mu9VpzShqz9OuOX8Og9pStpxg/public-dashboards/2b4d64cf295f40e29cac4c96af0d67c7
+                aspect_ratio: 50%
+                grid_options:
+                  columns: full
+                  rows: 8
+              - type: custom:addon-iframe-card
+                url: http://192.168.188.85:8123/a0d7b954_grafana/ingress
+                aspect_ratio: 0.2%
+      - type: grid
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: custom:bubble-card
+                card_type: pop-up
+                hash: '#music'
+                button_type: name
+                name: Music
+                icon: mdi:music
+                modules:
+                  - my_module_1
+                width_desktop: 90%
+              - type: iframe
+                url: http://192.168.188.85:8095
+                aspect_ratio: 50%
+                title: Music Assistant
+      - type: grid
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: custom:bubble-card
+                card_type: pop-up
+                hash: '#battery'
+                button_type: name
+                modules:
+                  - my_module_1
+                name: Batterien
+                icon: mdi:battery
+                width_desktop: 70%
+              - square: true
+                type: grid
+                cards:
+                  - type: custom:battery-state-card
+                    secondary_info: '{last_changed}'
+                    entities:
+                      - entity: sensor.thermostat_1_wohnzimmer_battery_level
+                        name: Wohnzimmer 1
+                      - entity: sensor.thermostat_2_wohnzimmer_battery_level
+                        name: Wohnzimmer 2
+                      - entity: sensor.thermostat_kuche_battery_level
+                        name: Küche
+                      - entity: sensor.thermostat_bad_1_battery_level
+                        name: Bad 1
+                      - entity: sensor.thermostat_bad_2_battery_level
+                        name: Bad 2
+                    sort:
+                      by: state
+                    collapse: 8
+                    bulk_rename:
+                      - from: ' Battery'
+                      - from: ' level'
+                    colors:
+                      steps:
+                        - '#ff0000'
+                        - '#ffff00'
+                        - '#00ff00'
+                      gradient: true
+                    title: Thermostate
+                  - type: custom:battery-state-card
+                    secondary_info: '{last_changed}'
+                    entities:
+                      - entity: sensor.fenstersensor_wohnzimmer_battery
+                        name: Wohnzimmer
+                      - entity: sensor.fenstersensor_arbeitszimmer_battery
+                        name: Arbeitszimmer
+                      - entity: sensor.tursensor_kuche_zigbee_battery
+                        name: Küche Tür
+                      - entity: sensor.fenstersensor_bad_battery
+                        name: Bad
+                      - entity: sensor.fenstersensor_gastezimmer_zigbee_battery
+                        name: Gästezimmer
+                      - entity: sensor.fenstersensor_schlafzimmer_battery
+                        name: Schlafzimmer
+                    sort:
+                      by: state
+                    collapse: 8
+                    bulk_rename:
+                      - from: ' Battery'
+                      - from: ' level'
+                    colors:
+                      steps:
+                        - '#ff0000'
+                        - '#ffff00'
+                        - '#00ff00'
+                      gradient: true
+                    title: Fenstersensoren
+                  - type: custom:battery-state-card
+                    secondary_info: '{last_changed}'
+                    entities:
+                      - entity: sensor.lichtschalter_flur_battery
+                        name: Lichtschalter Flur
+                      - entity: sensor.lichtschalter_gz_zigbee_battery
+                        name: Lichtschalter Gästezimmer
+                      - entity: sensor.rauchmelder_zigbee_1_battery
+                        name: Rauchmelder 1.OG
+                      - entity: sensor.rauchmelder_zigbee_2_battery
+                        name: Rauchmelder Arbeitszimmer
+                      - entity: sensor.shellyh_t_aussenbereich_battery
+                        name: Temperatursensor Hof
+                      - entity: sensor.briefkasten_shelly_blu_battery
+                        name: Briefkasten
+                      - entity: sensor.paketbox_shelly_blu_battery
+                        name: Paketbox
+                    sort:
+                      by: state
+                    collapse: 8
+                    bulk_rename:
+                      - from: ' Battery'
+                      - from: ' level'
+                    colors:
+                      steps:
+                        - '#ff0000'
+                        - '#ffff00'
+                        - '#00ff00'
+                      gradient: true
+                    title: Sonstige
+                columns: 3
+      - type: grid
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: custom:bubble-card
+                card_type: pop-up
+                hash: '#klingel'
+                is_sidebar_hidden: true
+                width_desktop: 800px
+                auto_close: 45000
+                hide_backdrop: false
+                name: Türklingel
+                margin_top_desktop: 0px
+                margin: 7px
+                show_name: true
+                show_icon: false
+                scrolling_effect: false
+                button_type: name
+                modules:
+                  - my_module_1
+                trigger:
+                  - condition: state
+                    entity: binary_sensor.reolink_video_doorbell_wifi_besucher
+                    state: 'on'
+              - type: picture-entity
+                show_state: false
+                show_name: false
+                camera_view: live
+                entity: input_button.fake_entity
+                camera_image: camera.reolink_video_doorbell_wifi_fliessend
+                aspect_ratio: '4:3'
+                tap_action:
+                  action: none
+                hold_action:
+                  action: none
+    cards: []
+    dense_section_placement: false
+    badges:
+      - type: custom:button-card
+        show_name: true
+        show_state: true
+        show_icon: false
+        entity: input_boolean.conny_fruhschicht
+        name: Conny Frühschicht
+        tap_action:
+          action: toggle
+        visibility:
+          - condition: screen
+            media_query: '(min-width: 0px) and (max-width: 767px)'
+        styles:
+          card:
+            - box-shadow: none
+            - height: 40px
+            - width: 100px
+            - border-radius: 0px
+          name:
+            - font-size: 0.6rem
+          state:
+            - font-size: 0.8rem
+        card_mod:
+          style: |
+            ha-card {
+              box-shadow: none;
+            }
+        state:
+          - value: 'on'
+            styles:
+              card:
+                - background: var(--ha-card-background-active)
+      - type: custom:button-card
+        show_name: true
+        show_state: true
+        show_icon: false
+        entity: light.duftlampe
+        name: Duftlampe
+        tap_action:
+          action: toggle
+        visibility:
+          - condition: screen
+            media_query: '(min-width: 0px) and (max-width: 767px)'
+          - condition: user
+            users:
+              - 8a4023b71f2b4abb945337750f7dbcf8
+        styles:
+          card:
+            - box-shadow: none
+            - height: 40px
+            - width: 100px
+            - border-radius: 0px
+          name:
+            - font-size: 0.6rem
+          state:
+            - font-size: 0.8rem
+        card_mod:
+          style: |
+            ha-card {
+              box-shadow: none;
+            }
+        state:
+          - value: 'on'
+            styles:
+              card:
+                - background: var(--ha-card-background-active)
+    background:
+      opacity: 33
+      alignment: center
+      size: cover
+      repeat: repeat
+      attachment: scroll
+    layout:
+      ha-view-sections-column-gap: 8px
+    theme: gx-dark-blue-cyan
+    header:
+      layout: center
+      badges_position: top
+      badges_wrap: scroll

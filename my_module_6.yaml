@@ -1,0 +1,53 @@
+.bubble-container {
+  --bubble-border-radius: 0px !important;
+  --bubble-box-shadow: 4.5px 4.5px 13px rgba(0, 26, 28, 0.7), -4.5px -4.5px 13px rgba(0, 26, 28, 0.7);
+}
+.bubble-background {
+  background: linear-gradient(311deg,rgba(0, 38, 41, 1) 0%, rgba(0, 64, 69, 1) 50%);
+}
+.bubble-button-card-container, 
+.bubble-button-card {
+  height: 120px !important;
+}
+.bubble-sub-button-container {
+  --mdc-icon-size: 100px;
+  position: absolute !important;
+  bottom: 0px !important;
+  justify-self: center;
+  align-self: center;
+  justify-content: center;
+  align-content: start;
+  justify-items: center;
+  left: 10px;
+  right: 0;
+  margin-bottom: -20px !important;
+  height: 100%
+}
+.bubble-sub-button{
+  background: transparent !important;
+  font-size: calc(1rem + (12 - 10) * ((100vw - 320px) / (1600 - 320)));
+  font-weight: 300;
+  line_height: 20px;
+  padding-right: 25px
+}
+.bubble-sub-button-icon {
+  --mdc-icon-size: 25px;
+  justify-content: center;
+  min-width: 58px !important;
+  min-height: 58px !important;
+  margin-left: 0px;
+  margin-top: 15px;
+  padding-bottom: 20px !important;
+}
+.bubble-sub-button-1 {
+  padding-bottom: 40px !important
+}
+.bubble-sub-button-4 {
+  padding-bottom: 40px !important
+}
+.bubble-sub-button-7 {
+  padding-bottom: 40px !important
+}
+.bubble-sub-button-10 {
+  padding-bottom: 40px !important
+}

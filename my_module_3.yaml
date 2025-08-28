@@ -1,0 +1,54 @@
+.bubble-sub-button-container {
+  position: absolute !important;
+  bottom: 0px !important;
+  justify-self: center;
+  align-self: center;
+  justify-content: center;
+  align-content: start;
+  justify-items: center;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+.bubble-sub-button-1{
+  background: transparent !important;
+  font-size: calc(1rem + (65 - 10) * ((250vw - 320px) / (1600 - 320)));
+  font-weight: 300;
+  top: -55%;
+}
+.bubble-sub-button-2{
+  background: transparent !important;
+  font-size: calc(1rem + (13 - 10) * ((250vw - 320px) / (1600 - 320)));
+  font-weight: 300;
+  top: 380%;
+}
+.bubble-sub-button-3{
+  background: transparent !important;
+  font-size: calc(1rem + (13 - 10) * ((250vw - 320px) / (1600 - 320)));
+  font-weight: 300;
+  top: 480%;
+}
+.bubble-sub-button-4{
+  background: transparent !important;
+  font-size: calc(1rem + (13 - 10) * ((250vw - 320px) / (1600 - 320)));
+  font-weight: 600;
+  top: 510%
+}
+.bubble-sub-button-5{
+  background: transparent !important;
+  font-size: calc(1rem + (13 - 10) * ((250vw - 320px) / (1600 - 320)));
+  font-weight: 600;
+  top: 800%
+}
+.bubble-sub-button-6{
+  background: transparent !important;
+  font-size: calc(1rem + (10 - 10) * ((250vw - 320px) / (1600 - 320)));
+  font-weight: 300;
+  top: 560%
+}
+.bubble-sub-button-7{
+  background: transparent !important;
+  font-size: calc(1rem + (10 - 10) * ((250vw - 320px) / (1600 - 320)));
+  font-weight: 300;
+  top: 700%;
+}

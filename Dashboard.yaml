@@ -548,7 +548,7 @@ views:
               .bubble-container {
                 background: linear-gradient(311deg,rgba(0, 38, 41, 1) 0%, rgba(0, 64, 69, 1) 50%);
                 --bubble-border-radius: 0px !important;
-                z-index: 6;
+                z-index: 2;
               }
             show_end: true
             show_progress: false

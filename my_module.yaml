@@ -1,0 +1,23 @@
+.bubble-sub-button-container {
+    background-color: transparent !important;
+    display: grid !important;
+    grid-template-columns: repeat(1, auto); /* 3 Spalten für 2 Reihen */
+    grid-template-rows: repeat(3, auto);
+    gap: 16px !important;
+    align-items: left;
+    justify-items: left;
+    padding-left:  0px;
+    padding-right: 0px;
+   }
+  .large .bubble-sub-button {
+    height: 10px !important; /* Größe der Buttons */
+    width: 200px!important;
+    font-size: font-size: calc(1rem + (12 - 10) * ((100vw - 320px) / (1600 - 320)));
+    align-items: left;
+    justify-content: left;
+    background-color: transparent !important;
+  }
+  .large .bubble-sub-button-icon {
+    padding-right: 10px; 
+    background-color: transparent !important;
+  }

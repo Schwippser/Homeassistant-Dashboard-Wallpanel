@@ -1,0 +1,47 @@
+.bubble-button-card {
+  display: grid;
+  grid-template-areas:
+    'i1 i i2'
+    'n1 n n2'
+    's1 s s2';
+  grid-template-columns: auto 90% auto;
+  grid-template-rows: 1fr 1fr 1fr;
+  justify-items: center;
+}
+.bubble-icon-container {
+  grid-area: i;
+  justify-self: center;
+}
+.bubble-name-container {
+  grid-area: n;
+  justify-self: center;
+  align-self: center;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  margin: 0;
+}
+
+.large .bubble-sub-button-container {
+  --row-size: calc( var(--row-size-copy) - 1);
+  max-width: calc(100% - 20px);
+  max-height: calc(100% - 20px);
+  grid-area: s;
+  justify-self: center;
+  align-self: center;
+  justify-content: center;
+  align-content: start;
+  justify-items: center;
+  margin: 0;
+  left: 0;
+  right: 0;
+}
+.bubble-icon-container {
+  background-color: transparent !important;
+}
+.bubble-sub-button {
+  background: transparent !important;
+  font-size: calc(1rem + (12 - 10) * ((100vw - 320px) / (1600 - 320)));
+  font-weight: 300;
+  margin-bottom:5px;
+}

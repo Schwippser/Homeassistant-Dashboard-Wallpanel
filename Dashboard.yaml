@@ -39,32 +39,6 @@ views:
               - my_module_1
               - my_module_8
             entity: sensor.shellyh_t_aussenbereich_temperature
-            card_text_style:
-              name:
-                color: white
-                font_size: 20px
-                font_weight: '300'
-                opacity: 1
-              state:
-                color: white
-                font_size: 60px
-                opacity: 1
-                font_weight: '300'
-            visual_styling_center:
-              height_multiplier: 2.7
-              hide_subbutton_background: false
-              enable_gradient: false
-              gradient_target: background
-              subicon_size_multiplier: 1
-              subbutton_background_ratio: 1
-              inner_padding: 0
-              icon_vertical_margin: -10
-              subbutton_horizontal_margin: -10
-              subbutton_row_spacing: 0
-              subbutton_column_spacing: -10
-              apply_to_main_icon: false
-              apply_to_sub_icons: false
-              helper_opacity: 0.85
             show_state: true
             tap_action:
               action: none
@@ -340,32 +314,6 @@ views:
               - my_module_1
               - my_module_8
             entity: sensor.temperatursensor_kuche_temperature
-            card_text_style:
-              name:
-                color: white
-                font_size: 20px
-                font_weight: '300'
-                opacity: 1
-              state:
-                color: white
-                font_size: 60px
-                opacity: 1
-                font_weight: '300'
-            visual_styling_center:
-              height_multiplier: 2.7
-              hide_subbutton_background: false
-              enable_gradient: false
-              gradient_target: background
-              subicon_size_multiplier: 1
-              subbutton_background_ratio: 1
-              inner_padding: 0
-              icon_vertical_margin: -10
-              subbutton_horizontal_margin: -10
-              subbutton_row_spacing: 0
-              subbutton_column_spacing: -10
-              apply_to_main_icon: false
-              apply_to_sub_icons: false
-              helper_opacity: 0.85
             show_state: true
             tap_action:
               action: none

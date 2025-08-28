@@ -1,0 +1,7 @@
+  .bubble-name {
+  font-size: calc(1rem + (12 - 10) * ((100vw - 320px) / (1600 - 320)));
+}
+.bubble-state {
+  font-size: calc(1rem + (24 - 10) * ((250vw - 320px) / (1600 - 320)));
+  line-height: 70px !important;
+}
